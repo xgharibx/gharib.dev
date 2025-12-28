@@ -1,0 +1,43 @@
+{
+  "name": "Amr Gharib - Problem Solver & Idea Creator",
+  "short_name": "Amr Gharib",
+  "description": "The world has problems. I have solutions. 18+ years of turning impossible into inevitable. Full-stack developer, AI/ML engineer, and relentless innovator.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000005",
+  "theme_color": "#00d4ff",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["business", "developer tools", "education", "productivity"],
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/home.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Homepage"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

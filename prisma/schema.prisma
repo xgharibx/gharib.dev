@@ -1,0 +1,163 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String         @id @default(cuid())
+  email         String         @unique
+  name          String
+  phone         String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  enrollments   Enrollment[]
+  appointments  Appointment[]
+  messages      Message[]
+}
+
+model Course {
+  id            String         @id @default(cuid())
+  title         String
+  slug          String         @unique
+  description   String
+  longDescription String?
+  image         String
+  price         Float
+  originalPrice Float?
+  duration      String
+  level         String
+  category      String
+  language      String         @default("English")
+  maxStudents   Int            @default(30)
+  startDate     DateTime?
+  endDate       DateTime?
+  isActive      Boolean        @default(true)
+  isFeatured    Boolean        @default(false)
+  syllabus      String?
+  requirements  String?
+  whatYouLearn  String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  enrollments   Enrollment[]
+}
+
+model Enrollment {
+  id            String         @id @default(cuid())
+  userId        String
+  courseId      String
+  status        String         @default("pending")
+  paymentStatus String         @default("pending")
+  enrolledAt    DateTime       @default(now())
+  user          User           @relation(fields: [userId], references: [id])
+  course        Course         @relation(fields: [courseId], references: [id])
+
+  @@unique([userId, courseId])
+}
+
+model Appointment {
+  id            String         @id @default(cuid())
+  userId        String
+  date          DateTime
+  time          String
+  duration      Int            @default(60)
+  type          String
+  topic         String
+  description   String?
+  status        String         @default("pending")
+  meetingLink   String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  user          User           @relation(fields: [userId], references: [id])
+}
+
+model Message {
+  id            String         @id @default(cuid())
+  userId        String?
+  name          String
+  email         String
+  phone         String?
+  subject       String
+  message       String
+  type          String         @default("general")
+  status        String         @default("unread")
+  isRead        Boolean        @default(false)
+  createdAt     DateTime       @default(now())
+  user          User?          @relation(fields: [userId], references: [id])
+}
+
+model Project {
+  id            String         @id @default(cuid())
+  title         String
+  slug          String         @unique
+  description   String
+  longDescription String?
+  image         String
+  images        String?
+  technologies  String
+  category      String
+  client        String?
+  projectUrl    String?
+  githubUrl     String?
+  isFeatured    Boolean        @default(false)
+  isActive      Boolean        @default(true)
+  completedAt   DateTime?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model Testimonial {
+  id            String         @id @default(cuid())
+  name          String
+  role          String
+  company       String?
+  image         String?
+  content       String
+  rating        Int            @default(5)
+  isActive      Boolean        @default(true)
+  createdAt     DateTime       @default(now())
+}
+
+model BlogPost {
+  id            String         @id @default(cuid())
+  title         String
+  slug          String         @unique
+  excerpt       String
+  content       String
+  image         String?
+  category      String
+  tags          String?
+  author        String         @default("Amr Gharib")
+  isPublished   Boolean        @default(false)
+  publishedAt   DateTime?
+  views         Int            @default(0)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model Newsletter {
+  id            String         @id @default(cuid())
+  email         String         @unique
+  name          String?
+  isActive      Boolean        @default(true)
+  subscribedAt  DateTime       @default(now())
+}
+
+model TimeSlot {
+  id            String         @id @default(cuid())
+  dayOfWeek     Int
+  startTime     String
+  endTime       String
+  isAvailable   Boolean        @default(true)
+}
+
+model Setting {
+  id            String         @id @default(cuid())
+  key           String         @unique
+  value         String
+  type          String         @default("string")
+  updatedAt     DateTime       @updatedAt
+}

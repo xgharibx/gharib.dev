@@ -1,0 +1,250 @@
+'use client'
+
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
+import Link from 'next/link'
+import { projects, projectCategories } from '@/lib/constants'
+import { RevealOnScroll, StaggerContainer, StaggerItem } from '@/components/ui/animated-text'
+import {
+  ArrowRight,
+  ExternalLink,
+  Github,
+  X,
+  Eye,
+} from 'lucide-react'
+import { cn } from '@/lib/utils'
+
+export function PortfolioSection() {
+  const [activeCategory, setActiveCategory] = useState('All')
+  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null)
+
+  const filteredProjects = activeCategory === 'All'
+    ? projects
+    : projects.filter((p) => p.category === activeCategory)
+
+  return (
+    <section className="relative overflow-hidden py-20 lg:py-32">
+      {/* Background */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute right-0 top-1/4 h-96 w-96 rounded-full bg-secondary-500/5 blur-3xl dark:bg-secondary-500/10" />
+        <div className="absolute bottom-1/4 left-0 h-96 w-96 rounded-full bg-primary-500/5 blur-3xl dark:bg-primary-500/10" />
+      </div>
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <RevealOnScroll>
+          <div className="mb-12 text-center">
+            <span className="mb-4 inline-block rounded-full bg-secondary-100 px-4 py-2 text-sm font-medium text-secondary-700 dark:bg-secondary-900/30 dark:text-secondary-300">
+              Portfolio
+            </span>
+            <h2 className="font-display text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl lg:text-5xl">
+              Featured
+              <span className="gradient-text"> Projects</span>
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600 dark:text-gray-400">
+              A showcase of my best work across various industries and technologies
+            </p>
+          </div>
+        </RevealOnScroll>
+
+        {/* Category Filter */}
+        <RevealOnScroll>
+          <div className="mb-12 flex flex-wrap justify-center gap-2">
+            {projectCategories.slice(0, 6).map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={cn(
+                  'rounded-full px-5 py-2 text-sm font-medium transition-all',
+                  activeCategory === category
+                    ? 'bg-primary-500 text-white shadow-lg shadow-primary-500/30'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-dark-700 dark:text-gray-300 dark:hover:bg-dark-600'
+                )}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </RevealOnScroll>
+
+        {/* Projects Grid */}
+        <motion.div
+          layout
+          className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.slice(0, 6).map((project, index) => (
+              <motion.div
+                key={project.id}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+              >
+                <motion.div
+                  whileHover={{ y: -8 }}
+                  className="group relative h-full overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-lg transition-all hover:shadow-2xl dark:border-dark-600 dark:bg-dark-700"
+                >
+                  {/* Image */}
+                  <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-primary-900/30 dark:to-secondary-900/30">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-4xl font-bold text-primary-500/20">
+                        {project.title.charAt(0)}
+                      </div>
+                    </div>
+                    {/* Overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      <button
+                        onClick={() => setSelectedProject(project)}
+                        className="flex items-center gap-2 rounded-full bg-white px-5 py-2 font-semibold text-gray-900 transition-transform hover:scale-105"
+                      >
+                        <Eye className="h-4 w-4" />
+                        View Details
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6">
+                    {/* Category badge */}
+                    <span className="mb-3 inline-block rounded-full bg-primary-100 px-3 py-1 text-xs font-medium text-primary-700 dark:bg-primary-900/30 dark:text-primary-300">
+                      {project.category}
+                    </span>
+
+                    <h3 className="mb-2 font-display text-xl font-bold text-gray-900 dark:text-white">
+                      {project.title}
+                    </h3>
+                    <p className="mb-4 line-clamp-2 text-sm text-gray-600 dark:text-gray-400">
+                      {project.description}
+                    </p>
+
+                    {/* Technologies */}
+                    <div className="mb-4 flex flex-wrap gap-2">
+                      {project.technologies.slice(0, 3).map((tech) => (
+                        <span
+                          key={tech}
+                          className="rounded-lg bg-gray-100 px-2 py-1 text-xs text-gray-600 dark:bg-dark-600 dark:text-gray-400"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {project.technologies.length > 3 && (
+                        <span className="rounded-lg bg-gray-100 px-2 py-1 text-xs text-gray-600 dark:bg-dark-600 dark:text-gray-400">
+                          +{project.technologies.length - 3}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Client */}
+                    {project.client && (
+                      <p className="text-sm text-gray-500 dark:text-gray-500">
+                        <span className="font-medium">Client:</span> {project.client}
+                      </p>
+                    )}
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+
+        {/* View All CTA */}
+        <RevealOnScroll>
+          <div className="mt-12 text-center">
+            <Link
+              href="/portfolio"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary-500 to-primary-600 px-8 py-4 font-semibold text-white shadow-lg shadow-primary-500/30 transition-all hover:shadow-xl"
+            >
+              View All Projects
+              <ArrowRight className="h-5 w-5" />
+            </Link>
+          </div>
+        </RevealOnScroll>
+      </div>
+
+      {/* Project Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedProject(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-3xl bg-white p-8 dark:bg-dark-800"
+            >
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="absolute right-4 top-4 rounded-full bg-gray-100 p-2 text-gray-600 transition-colors hover:bg-gray-200 dark:bg-dark-700 dark:text-gray-300"
+              >
+                <X className="h-5 w-5" />
+              </button>
+
+              {/* Modal content */}
+              <div className="aspect-video overflow-hidden rounded-2xl bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-primary-900/30 dark:to-secondary-900/30">
+                <div className="flex h-full items-center justify-center">
+                  <div className="text-6xl font-bold text-primary-500/20">
+                    {selectedProject.title.charAt(0)}
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6">
+                <span className="inline-block rounded-full bg-primary-100 px-3 py-1 text-sm font-medium text-primary-700 dark:bg-primary-900/30 dark:text-primary-300">
+                  {selectedProject.category}
+                </span>
+                <h3 className="mt-3 font-display text-2xl font-bold text-gray-900 dark:text-white">
+                  {selectedProject.title}
+                </h3>
+                <p className="mt-3 text-gray-600 dark:text-gray-400">
+                  {selectedProject.description}
+                </p>
+
+                <div className="mt-6">
+                  <h4 className="mb-2 font-semibold text-gray-900 dark:text-white">
+                    Technologies Used
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedProject.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="rounded-lg bg-gray-100 px-3 py-1 text-sm text-gray-600 dark:bg-dark-700 dark:text-gray-400"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {selectedProject.client && (
+                  <div className="mt-4">
+                    <span className="font-semibold text-gray-900 dark:text-white">Client: </span>
+                    <span className="text-gray-600 dark:text-gray-400">{selectedProject.client}</span>
+                  </div>
+                )}
+
+                <div className="mt-8 flex gap-4">
+                  <Link
+                    href={`/portfolio/${selectedProject.slug}`}
+                    className="flex items-center gap-2 rounded-full bg-primary-500 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:shadow-xl"
+                  >
+                    View Case Study
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  )
+}
