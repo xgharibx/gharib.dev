@@ -180,19 +180,49 @@ export function StorySection() {
             className="relative"
           >
             {/* Profile image */}
-            <div className="relative w-full aspect-square max-w-md mx-auto">
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-3xl blur-2xl opacity-30" />
-              <div className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-white/10">
+            <div className="relative w-full aspect-square max-w-md mx-auto group">
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-3xl blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-500" />
+              {/* Animated border glow */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-3xl blur opacity-0 group-hover:opacity-50 transition-all duration-500 animate-pulse" />
+              <div className="relative w-full h-full rounded-3xl overflow-hidden border-2 border-white/10 group-hover:border-cyan-400/50 transition-all duration-500">
                 <Image
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80"
+                  src="/images/amr-gharib.jpg"
                   alt="Amr Gharib"
                   fill
-                  className="object-cover"
+                  className="object-cover object-top transition-all duration-1000 ease-out group-hover:scale-110 mix-blend-luminosity group-hover:mix-blend-normal filter contrast-110 brightness-90 group-hover:brightness-100"
                 />
+                
+                {/* Fragmented overlay grid */}
+                <div className="absolute inset-0 opacity-30 group-hover:opacity-0 transition-opacity duration-700" 
+                  style={{
+                    backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.25) 2px, rgba(0,0,0,0.25) 4px)',
+                  }} 
+                />
+                
+                {/* Glitch lines animation */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                  <div className="absolute w-full h-[2px] bg-cyan-400/50 top-[30%] -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                  <div className="absolute w-full h-[1px] bg-purple-400/50 top-[60%] translate-x-full group-hover:-translate-x-full transition-transform duration-1000 delay-100" />
+                  <div className="absolute w-full h-[2px] bg-pink-400/50 top-[85%] -translate-x-full group-hover:translate-x-full transition-transform duration-1000 delay-200" />
+                </div>
+                
+                {/* Dark radial vignette */}
+                <div className="absolute inset-0 bg-gradient-radial from-transparent via-black/30 to-black/70" />
+                
+                {/* Bottom gradient fade */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                
+                {/* Hover color overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-transparent to-purple-500/0 group-hover:from-cyan-500/15 group-hover:to-purple-500/15 transition-all duration-500" />
+                
+                {/* Scan line sweep */}
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-400/20 to-transparent translate-y-full group-hover:translate-y-[-100%] transition-transform duration-1500" />
+                
+                {/* Inner glow */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ boxShadow: 'inset 0 0 80px rgba(0, 212, 255, 0.2), inset 0 0 40px rgba(168, 85, 247, 0.15)' }} />
                 {/* Overlay with name */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <h3 className="text-3xl font-black text-white">Amr Gharib</h3>
+                <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                  <h3 className="text-3xl font-black text-white drop-shadow-lg">Amr Gharib</h3>
                   <div className="flex items-center gap-4 mt-2 text-gray-300">
                     <span className="flex items-center gap-1">
                       <Calendar className="w-4 h-4" />
@@ -200,7 +230,7 @@ export function StorySection() {
                     </span>
                     <span className="flex items-center gap-1">
                       <MapPin className="w-4 h-4" />
-                      Earth
+                      Cairo, Egypt
                     </span>
                   </div>
                 </div>

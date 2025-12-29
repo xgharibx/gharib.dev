@@ -151,18 +151,45 @@ export function EnhancedAboutSection() {
           >
             <TiltCard className="relative">
               {/* Profile Image */}
-              <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-3xl group">
                 <GradientBorder className="h-full w-full rounded-3xl">
-                  <div className="relative h-full w-full overflow-hidden rounded-3xl bg-dark-800">
+                  <div className="relative h-full w-full overflow-hidden rounded-3xl bg-dark-900">
                     <Image
-                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=750&fit=crop"
+                      src="/images/amr-gharib.jpg"
                       alt="Amr Gharib"
                       fill
-                      className="object-cover"
+                      className="object-cover object-top transition-all duration-1000 ease-out group-hover:scale-110 mix-blend-luminosity group-hover:mix-blend-normal filter contrast-110 brightness-90 group-hover:brightness-100"
                       priority
                     />
-                    {/* Overlay gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent" />
+                    
+                    {/* Fragmented scanline overlay */}
+                    <div className="absolute inset-0 opacity-40 group-hover:opacity-0 transition-opacity duration-700" 
+                      style={{
+                        backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.2) 3px, rgba(0,0,0,0.2) 4px)',
+                      }} 
+                    />
+                    
+                    {/* Animated glitch lines */}
+                    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                      <div className="absolute w-full h-[2px] bg-cyan-400/40 top-[25%] -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                      <div className="absolute w-full h-[1px] bg-purple-400/40 top-[55%] translate-x-full group-hover:-translate-x-full transition-transform duration-1000 delay-150" />
+                      <div className="absolute w-full h-[2px] bg-pink-400/40 top-[75%] -translate-x-full group-hover:translate-x-full transition-transform duration-1000 delay-300" />
+                    </div>
+                    
+                    {/* Dark vignette */}
+                    <div className="absolute inset-0 bg-gradient-radial from-transparent via-black/30 to-black/70" />
+                    
+                    {/* Bottom fade */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-90" />
+                    
+                    {/* Hover color overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    
+                    {/* Scan line sweep */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-400/15 to-transparent translate-y-full group-hover:translate-y-[-100%] transition-transform duration-1500" />
+                    
+                    {/* Inner glow effect */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ boxShadow: 'inset 0 0 100px rgba(0, 212, 255, 0.15), inset 0 0 50px rgba(168, 85, 247, 0.15)' }} />
                   </div>
                 </GradientBorder>
 

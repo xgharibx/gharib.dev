@@ -150,14 +150,18 @@ export default function CourseDetailPage() {
                 </div>
               </div>
 
-              <div className="mb-8 flex items-center gap-4">
-                <Image
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop"
-                  alt="Instructor"
-                  width={50}
-                  height={50}
-                  className="rounded-full"
-                />
+              <div className="mb-8 flex items-center gap-4 group">
+                <div className="relative overflow-hidden rounded-full ring-2 ring-cyan-400/30 group-hover:ring-cyan-400 transition-all duration-300">
+                  <Image
+                    src="/images/amr-gharib.jpg"
+                    alt="Amr Gharib - Instructor"
+                    width={50}
+                    height={50}
+                    className="rounded-full transition-all duration-500 group-hover:scale-110 mix-blend-luminosity group-hover:mix-blend-normal filter contrast-110"
+                  />
+                  {/* Subtle overlay */}
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
                 <div>
                   <p className="font-semibold">Amr Gharib</p>
                   <p className="text-sm text-gray-400">Senior Instructor</p>

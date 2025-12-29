@@ -68,21 +68,58 @@ export function AboutSection() {
         <div className="mb-24 grid gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Image/Visual side */}
           <RevealOnScroll direction="left">
-            <div className="relative">
-              <div className="relative aspect-square overflow-hidden rounded-3xl bg-gradient-to-br from-primary-500 to-secondary-500 p-1">
-                <div className="h-full w-full overflow-hidden rounded-[22px] bg-gray-100 dark:bg-dark-800">
-                  <div className="flex h-full items-center justify-center">
-                    <div className="text-center">
-                      <div className="mx-auto mb-6 flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-br from-primary-500 to-primary-600 font-display text-4xl font-bold text-white shadow-2xl shadow-primary-500/40">
-                        AG
-                      </div>
-                      <h3 className="font-display text-2xl font-bold text-gray-900 dark:text-white">
-                        Amr Gharib
-                      </h3>
-                      <p className="mt-2 text-gray-600 dark:text-gray-400">
-                        Full Stack Developer & Educator
-                      </p>
-                    </div>
+            <div className="relative group">
+              {/* Animated background glow */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 animate-pulse" />
+              
+              <div className="relative aspect-square overflow-hidden rounded-3xl bg-gradient-to-br from-primary-500 to-secondary-500 p-1 group-hover:from-cyan-500 group-hover:to-purple-500 transition-all duration-500">
+                <div className="h-full w-full overflow-hidden rounded-[22px] bg-dark-900 relative">
+                  {/* Profile Image - Inside Out Fragmented Effect */}
+                  <Image
+                    src="/images/amr-gharib.jpg"
+                    alt="Amr Gharib"
+                    fill
+                    className="object-cover object-top transition-all duration-1000 ease-out group-hover:scale-110 mix-blend-luminosity group-hover:mix-blend-normal filter contrast-110 brightness-90 group-hover:brightness-100"
+                    priority
+                  />
+                  
+                  {/* Fragmented overlay grid */}
+                  <div className="absolute inset-0 opacity-30 group-hover:opacity-0 transition-opacity duration-700" 
+                    style={{
+                      backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.3) 2px, rgba(0,0,0,0.3) 4px)',
+                    }} 
+                  />
+                  
+                  {/* Glitch lines */}
+                  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <div className="absolute w-full h-[2px] bg-cyan-400/50 top-[20%] -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                    <div className="absolute w-full h-[1px] bg-purple-400/50 top-[50%] translate-x-full group-hover:-translate-x-full transition-transform duration-1000 delay-100" />
+                    <div className="absolute w-full h-[2px] bg-pink-400/50 top-[80%] -translate-x-full group-hover:translate-x-full transition-transform duration-1000 delay-200" />
+                  </div>
+                  
+                  {/* Dark vignette mask */}
+                  <div className="absolute inset-0 bg-gradient-radial from-transparent via-black/20 to-black/80" />
+                  
+                  {/* Bottom gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                  
+                  {/* Color overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-transparent to-purple-500/0 group-hover:from-cyan-500/10 group-hover:to-purple-500/20 transition-all duration-500" />
+                  
+                  {/* Scan line effect */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-400/20 to-transparent translate-y-full group-hover:translate-y-[-100%] transition-transform duration-1500" />
+                  
+                  {/* Inner glow */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ boxShadow: 'inset 0 0 100px rgba(0, 212, 255, 0.2), inset 0 0 40px rgba(168, 85, 247, 0.2)' }} />
+                  
+                  {/* Name overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 className="font-display text-2xl font-bold text-white drop-shadow-lg">
+                      Amr Gharib
+                    </h3>
+                    <p className="mt-2 text-gray-300">
+                      Full Stack Developer & Educator
+                    </p>
                   </div>
                 </div>
               </div>

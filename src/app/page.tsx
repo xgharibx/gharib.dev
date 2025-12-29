@@ -75,7 +75,9 @@ export default function HomePage() {
           <ShowcaseSection />
           <TechStackSection />
           <StorySection />
+          {/* Testimonials temporarily hidden
           <TestimonialShowcase />
+          */}
           <ViralContactSection />
         </main>
       </LoadingWrapper>

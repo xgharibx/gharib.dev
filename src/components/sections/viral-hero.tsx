@@ -144,24 +144,24 @@ export function ViralHeroSection() {
   useEffect(() => {
     const timeouts: NodeJS.Timeout[] = []
     
-    // Phase transitions - dramatic storytelling
-    timeouts.push(setTimeout(() => setPhase('problems'), 3500))    // Show world problems
-    timeouts.push(setTimeout(() => setPhase('hope'), 12000))       // Transition to hope
-    timeouts.push(setTimeout(() => setPhase('reveal'), 15000))     // Reveal the name
-    timeouts.push(setTimeout(() => setPhase('mission'), 20000))    // Show mission
-    timeouts.push(setTimeout(() => setPhase('impact'), 26000))     // Show impact
+    // Phase transitions - SLOWER for better readability
+    timeouts.push(setTimeout(() => setPhase('problems'), 5000))    // Show world problems - longer intro
+    timeouts.push(setTimeout(() => setPhase('hope'), 25000))       // Transition to hope - more time to read problems
+    timeouts.push(setTimeout(() => setPhase('reveal'), 32000))     // Reveal the name - dramatic pause
+    timeouts.push(setTimeout(() => setPhase('mission'), 40000))    // Show mission - let the name sink in
+    timeouts.push(setTimeout(() => setPhase('impact'), 50000))     // Show impact - final reveal
 
     return () => {
       timeouts.forEach(t => clearTimeout(t))
     }
   }, [])
 
-  // Cycle through problems
+  // Cycle through problems - SLOWER for better readability
   useEffect(() => {
     if (phase !== 'problems') return
     const interval = setInterval(() => {
       setCurrentProblem(prev => (prev + 1) % worldProblems.length)
-    }, 2500)
+    }, 4000)  // 4 seconds per problem for comfortable reading
     return () => clearInterval(interval)
   }, [phase])
 
@@ -212,8 +212,8 @@ export function ViralHeroSection() {
       <div className="fixed inset-0 pointer-events-none bg-vignette" style={{ zIndex: 20 }} />
 
       {/* Main content */}
-      <div className="relative min-h-screen flex items-center justify-center" style={{ zIndex: 30 }}>
-        <div ref={textRef} className="text-center px-6 md:px-12 py-12 max-w-7xl">
+      <div className="relative min-h-screen flex items-center justify-center pt-20 pb-16" style={{ zIndex: 30 }}>
+        <div ref={textRef} className="text-center px-6 md:px-12 py-16 md:py-20 max-w-7xl w-full">
           <AnimatePresence mode="wait">
             
             {/* PHASE 1: The world has problems - Typewriter */}
@@ -258,7 +258,7 @@ export function ViralHeroSection() {
                   THE WORLD IS BROKEN
                 </motion.p>
 
-                <div className="relative h-64 md:h-80 flex items-center justify-center overflow-hidden">
+                <div className="relative min-h-[300px] md:min-h-[350px] lg:min-h-[400px] flex items-center justify-center overflow-visible">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={currentProblem}
@@ -266,10 +266,10 @@ export function ViralHeroSection() {
                       animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
                       exit={{ y: -100, opacity: 0, filter: 'blur(10px)' }}
                       transition={{ duration: 0.6, type: 'spring', stiffness: 100 }}
-                      className="absolute inset-0 flex flex-col items-center justify-center text-center px-4"
+                      className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 md:px-8"
                     >
                       {/* The Problem */}
-                      <p className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-4 leading-tight">
+                      <p className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black text-white mb-4 leading-tight max-w-5xl">
                         {worldProblems[currentProblem].problem}
                       </p>
                       
@@ -354,10 +354,10 @@ export function ViralHeroSection() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0, y: -100 }}
                 transition={{ duration: 0.8 }}
-                className="space-y-6"
+                className="space-y-6 py-8"
               >
                 <motion.h1
-                  className="text-7xl md:text-9xl lg:text-[14rem] font-black tracking-tighter leading-none"
+                  className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl xl:text-[12rem] font-black tracking-tighter leading-[0.85]"
                   initial={{ scale: 3, opacity: 0, filter: 'blur(30px)' }}
                   animate={{ scale: 1, opacity: 1, filter: 'blur(0px)' }}
                   transition={{ duration: 1.5, type: 'spring', stiffness: 100 }}
@@ -379,11 +379,11 @@ export function ViralHeroSection() {
                   initial={{ y: 50, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 1 }}
-                  className="flex flex-wrap justify-center gap-4 text-sm md:text-base text-gray-400 tracking-widest uppercase"
+                  className="flex flex-wrap justify-center gap-3 md:gap-4 text-xs sm:text-sm md:text-base text-gray-400 tracking-widest uppercase px-4"
                 >
-                  <span className="px-4 py-2 border border-cyan-400/30 rounded-full hover:border-cyan-400 transition-colors">Problem Solver</span>
-                  <span className="px-4 py-2 border border-purple-400/30 rounded-full hover:border-purple-400 transition-colors">Idea Creator</span>
-                  <span className="px-4 py-2 border border-pink-400/30 rounded-full hover:border-pink-400 transition-colors">Future Builder</span>
+                  <span className="px-3 md:px-4 py-2 border border-cyan-400/30 rounded-full hover:border-cyan-400 transition-colors">Problem Solver</span>
+                  <span className="px-3 md:px-4 py-2 border border-purple-400/30 rounded-full hover:border-purple-400 transition-colors">Idea Creator</span>
+                  <span className="px-3 md:px-4 py-2 border border-pink-400/30 rounded-full hover:border-pink-400 transition-colors">Future Builder</span>
                 </motion.div>
               </motion.div>
             )}

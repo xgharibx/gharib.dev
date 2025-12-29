@@ -34,7 +34,7 @@ const testimonials: Testimonial[] = [
     name: "Michael Foster",
     role: "CTO",
     company: "DataFlow Systems",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80",
     quote: "The system he built processes 10x more data than we expected, at half the cost. His problem-solving skills are unmatched.",
     rating: 5,
     projectType: "Data Pipeline"
