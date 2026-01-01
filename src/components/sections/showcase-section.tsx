@@ -475,7 +475,7 @@ export function ShowcaseSection() {
           className="text-center mt-16"
         >
           <motion.a
-            href="https://github.com/xgharibx"
+            href="https://www.gharib.dev"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}

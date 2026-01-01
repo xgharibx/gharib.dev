@@ -9,13 +9,13 @@ export const siteConfig = {
   phone: '+201500650001',
   location: 'Cairo, Egypt',
   social: {
-    github: 'https://github.com/xgharibx',
-    linkedin: 'https://linkedin.com/in/amrgharib',
-    twitter: 'https://twitter.com/amrgharib',
-    youtube: 'https://youtube.com/@amrgharib',
-    instagram: 'https://instagram.com/amrgharib',
-    facebook: 'https://facebook.com/amrgharib.dev',
-    discord: 'https://discord.gg/amrgharib',
+    github: 'https://www.gharib.dev',
+    linkedin: 'https://www.gharib.dev',
+    twitter: 'https://www.gharib.dev',
+    youtube: 'https://www.gharib.dev',
+    instagram: 'https://www.gharib.dev',
+    facebook: 'https://www.gharib.dev',
+    discord: 'https://www.gharib.dev',
   },
 }
 

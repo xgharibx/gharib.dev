@@ -152,9 +152,9 @@ export function ViralContactSection() {
   }
 
   const socialLinks = [
-    { icon: Github, href: "https://github.com/xgharibx", label: "GitHub" },
-    { icon: Linkedin, href: "https://linkedin.com/in/amrgharib", label: "LinkedIn" },
-    { icon: Twitter, href: "https://twitter.com/amrgharib", label: "Twitter" },
+    { icon: Github, href: "https://www.gharib.dev", label: "GitHub" },
+    { icon: Linkedin, href: "https://www.gharib.dev", label: "LinkedIn" },
+    { icon: Twitter, href: "https://www.gharib.dev", label: "Twitter" },
   ]
 
   return (
